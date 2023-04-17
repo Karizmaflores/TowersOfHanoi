@@ -55,7 +55,7 @@ const isLegal = (startStack, endStack) => {
 }
 
 // Function checkForWin checks if player wins
-const checkForWin = (stacks) => {
+const checkForWin = () => {
   
   // returns true if stack b or stack c has all 4 pieces. Returns false else
   if (stacks.b.length === 4 || stacks.c.length === 4) {
