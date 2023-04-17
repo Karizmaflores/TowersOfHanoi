@@ -36,28 +36,46 @@ const movePiece = (startStack, endStack) => {
   let piece = stacks[startStack].pop();
 
   // adds piece to end stack
-  stacks[endStack].push();
+  stacks[endStack].push(piece);
 }
 
 // Function isLegal checks if a moving a piece on top of another is allowed by boolean
 const isLegal = (startStack, endStack) => {
+
+  // stores the top pieces of the start stack and end stack into variables
+  let startStackTopPiece = stacks[startStack].length - 1;
+  let endStackTopPiece = stacks[endStack].length - 1;
   
-  //returns false if selected piece if greater than end stack piece
-  if (stacks[startStack].pop() > endStack)
+  // returns true if end stack has no pieces or if end piece is greater than start stack piece. Returns false else
+  if (stacks[endStack].length === 0 || endStackTopPiece > startStackTopPiece) {
+    return true;
+  } 
+  else 
+    return false;
+}
+
+// Function checkForWin checks if player wins
+const checkForWin = (stacks) => {
+  
+  // returns true if stack b or stack c has all 4 pieces. Returns false else
+  if (stacks.b.length === 4 || stacks.c.length === 4) {
+    console.log('You win!');
+    return true;
+  }
+  else
+    return false;
 
 }
 
-// What is a win in Towers of Hanoi? When should this function run?
-const checkForWin = () => {
-  // Your code here
-
-}
-
-// When is this function called? What should it do with its argument?
+// Function towersOfHanoi is called in getPrompt to began game play
 const towersOfHanoi = (startStack, endStack) => {
-  // Your code here
+  
+  // movePiece function and checkForWin functions are triggered if isLegal function returns true
   if(isLegal(startStack, endStack)) {
+
   movePiece(startStack, endStack);
+
+  checkForWin(stacks);
   }
 }
 
