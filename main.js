@@ -22,22 +22,28 @@ let stacks = {
   c: []
 };
 
-// Start here. What is this function doing?
+//Function printStacks displays the towers with current piece locations
 const printStacks = () => {
   console.log("a: " + stacks.a);
   console.log("b: " + stacks.b);
   console.log("c: " + stacks.c);
 }
 
-// Next, what do you think this function should do?
-const movePiece = () => {
-  // Your code here
+// Function movePiece removes a piece from one stack and adds to another stack
+const movePiece = (startStack, endStack) => {
 
+  // remove piece from start stack
+  let piece = stacks[startStack].pop();
+
+  // adds piece to end stack
+  stacks[endStack].push();
 }
 
-// Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
-const isLegal = () => {
-  // Your code here
+// Function isLegal checks if a moving a piece on top of another is allowed by boolean
+const isLegal = (startStack, endStack) => {
+  
+  //returns false if selected piece if greater than end stack piece
+  if (stacks[startStack].pop() > endStack)
 
 }
 
@@ -50,7 +56,9 @@ const checkForWin = () => {
 // When is this function called? What should it do with its argument?
 const towersOfHanoi = (startStack, endStack) => {
   // Your code here
-
+  if(isLegal(startStack, endStack)) {
+  movePiece(startStack, endStack);
+  }
 }
 
 const getPrompt = () => {
