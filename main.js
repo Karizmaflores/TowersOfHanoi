@@ -58,7 +58,7 @@ const isLegal = (startStack, endStack) => {
 const checkForWin = () => {
   
   // returns true if stack b or stack c has all 4 pieces. Returns false else
-  if (stacks.b.length === 4 || stacks.c.length === 4) {
+  if (stacks.a.length === 4 || stacks.b.length === 4) {
     console.log('You win!');
     return true;
   }

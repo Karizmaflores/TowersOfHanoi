@@ -25,7 +25,7 @@ const selectRow = (row) => {
 // but there might be something wrong with it...
 const pickUpStone = (rowID) => {
   const selectedRow = document.getElementById(rowID);
-  stone = selectedRow.removeChild(selectedRow.lastChild);
+  const stone = selectedRow.removeChild(selectedRow.lastChild);
   console.log(stone)
 }
 
@@ -36,6 +36,13 @@ const pickUpStone = (rowID) => {
 const dropStone = (rowID, stone) => {
   document.getElementById(rowID).appendChild(stone)
   stone = null
+
+  if(!stone){
+    pickUpStone();
+  }
+  else{
+    dropStone();
+  }
 }
 
 // * Remember you can use your logic from 'main.js' to maintain the rules of the game. But how? Follow the flow of data just like falling dominoes.
