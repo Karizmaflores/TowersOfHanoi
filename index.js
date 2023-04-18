@@ -7,7 +7,7 @@
 // * Why are you get a warning in your console? Fix it.
 // * Delete these comment lines!
 
-const stone = null
+let stone = null
 
 // this function is called when a row is clicked. 
 // Open your inspector tool to see what is being captured and can be used.
@@ -18,14 +18,26 @@ const selectRow = (row) => {
   console.log("Here is the stone's id: ", row.id)
   console.log("Here is the stone's data-size: ", currentRow)
 
-  pickUpStone(row.id)
+ 
+  if(!stone){
+    console.log("marker");
+    pickUpStone(row.id);
+  }
+  else
+  dropStone(row.id);
+  
 } 
 
 // this function can be called to get the last stone in the stack
 // but there might be something wrong with it...
 const pickUpStone = (rowID) => {
-  const selectedRow = document.getElementById(rowID);
-  const stone = selectedRow.removeChild(selectedRow.lastChild);
+  const selectedRow = document.getElementById(`${rowID}`);
+  console.log(rowID);
+  stone = selectedRow.lastElementChild;
+  console.log(selectedRow);
+
+  selectedRow.removeChild(stone);
+
   console.log(stone)
 }
 
@@ -33,17 +45,31 @@ const pickUpStone = (rowID) => {
 // Once you figure that out you'll need to figure out if its a legal move...
 // Something like: if(!stone){pickupStone} else{dropStone}
 
-const dropStone = (rowID, stone) => {
-  document.getElementById(rowID).appendChild(stone)
-  stone = null
+const dropStone = (rowID) => {
+  const selectedRow = document.getElementById(`${rowID}`);
+  let currentID = null;
+  if (selectedRow.lastElementChild !==null ){
+    currentID = selectedRow.lastElementChild.id;
+  }
+  console.log("TEST", currentID);
 
-  if(!stone){
-    pickUpStone();
+  if (currentID == null){
+    document.getElementById(rowID).appendChild(stone);
+    stone = null;
+    return true;
   }
-  else{
-    dropStone();
+
+  if(stone.id < currentID){
+    document.getElementById(rowID).appendChild(stone);
+    stone = null;
+    return true;
   }
+  console.log("Invalid move");
+  
 }
+
 
 // * Remember you can use your logic from 'main.js' to maintain the rules of the game. But how? Follow the flow of data just like falling dominoes.
 
+//when to execute...when to terminate, reset board
+//all situations
