@@ -57,19 +57,37 @@ const dropStone = (rowID) => {
     document.getElementById(rowID).appendChild(stone);
     stone = null;
     return true;
+    checkWin(rowID);
   }
 
   if(stone.id < currentID){
     document.getElementById(rowID).appendChild(stone);
     stone = null;
     return true;
+    checkWin(rowID);
   }
   console.log("Invalid move");
   
 }
 
+const checkWin = (rowID) => {
 
-// * Remember you can use your logic from 'main.js' to maintain the rules of the game. But how? Follow the flow of data just like falling dominoes.
+  const selectedRow = document.getElementById(`${rowID}`);
+  let topID = selectedRow.lastElementChild.id;
+  let bottomID = selectedRow.firstElementChild.id;
+  console.log("TOP STONE", topID, bottomID);
+
+  // If certain towers top stone is equal to 1 and bottom stone is equal to 4, player wins and prints to the screen
+  if (topID === 1 && bottomID === 4) {
+
+  console.log("You win!");
+
+  // resets board and terminates program
+  stone = null;
+
+  }
+  return false;
+}
 
 //when to execute...when to terminate, reset board
 //all situations
