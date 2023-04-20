@@ -25,6 +25,7 @@ const selectRow = (row) => {
   }
   else
   dropStone(row.id);
+  checkWin(row);
   
 } 
 
@@ -57,37 +58,29 @@ const dropStone = (rowID) => {
     document.getElementById(rowID).appendChild(stone);
     stone = null;
     return true;
-    checkWin(rowID);
   }
 
   if(stone.id < currentID){
     document.getElementById(rowID).appendChild(stone);
     stone = null;
     return true;
-    checkWin(rowID);
   }
   console.log("Invalid move");
+  alert('Invalid Move!');
   
 }
 
-const checkWin = (rowID) => {
+const checkWin = (row) => {
 
-  const selectedRow = document.getElementById(`${rowID}`);
-  let topID = selectedRow.lastElementChild.id;
-  let bottomID = selectedRow.firstElementChild.id;
-  console.log("TOP STONE", topID, bottomID);
+  let one = document.getElementById("1");
+  let two = document.getElementById("2");
+  let three = document.getElementById("3");
+  let four = document.getElementById("4");
 
-  // If certain towers top stone is equal to 1 and bottom stone is equal to 4, player wins and prints to the screen
-  if (topID === 1 && bottomID === 4) {
-
-  console.log("You win!");
-
-  // resets board and terminates program
-  stone = null;
-
+  if (row.id === "middle-row" || row.id === "top-row"){
+    if (row.children.item(0) === four && row.children.item(1) === three && row.children.item(2) === two && row.children.item(3) === one) { 
+      console.log("You win!");
+      alert('You win!');
+    }
   }
-  return false;
 }
-
-//when to execute...when to terminate, reset board
-//all situations
