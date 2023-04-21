@@ -7,15 +7,6 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-// An object that represents the three stacks of Towers of Hanoi; 
-  // * each key is an array of Numbers: 
-    // * A is the far-left, 
-    // * B is the middle, 
-    // * C is the far-right stack
-      // * Each number represents the largest to smallest tokens: 
-        // * 4 is the largest, 
-        // * 1 is the smallest
-
 let stacks = {
   a: [4, 3, 2, 1],
   b: [],
